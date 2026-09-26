@@ -17,3 +17,4 @@ mvn -q clean test
 ```bash
 mvn clean package
 ```
+This framework is for Screener website.
