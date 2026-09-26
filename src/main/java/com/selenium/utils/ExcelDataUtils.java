@@ -21,8 +21,7 @@ public class ExcelDataUtils {
 		Row row = sheet.getRow(rowNum);
 		Cell cell = row.getCell(colNum);
 		
-		return cell.toString();
-		
+		return cell.toString();	
 	}
 	
 	public int getRowCount()
