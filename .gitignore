@@ -1,0 +1,15 @@
+# Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Test output
+test-output/
+screenshots/
+logs/
+
+# Test credentials
+src/test/resources/TestData.xlsx
