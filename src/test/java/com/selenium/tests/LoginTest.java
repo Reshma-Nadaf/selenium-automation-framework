@@ -17,7 +17,7 @@ import com.selenium.utils.TestListener;
 public class LoginTest extends BaseTest {
 	private static final Logger log = LogManager.getLogger(LoginTest.class);
 	
-	@DataProvider(name = "loginData" , parallel = true)
+	@DataProvider(name = "loginData")
 	public Object[][] logindata() throws IOException
 	{
 		ExcelDataUtils data = new ExcelDataUtils("src\\test\\resources\\TestData.xlsx", "Login");
