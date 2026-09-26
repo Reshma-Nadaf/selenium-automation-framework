@@ -20,9 +20,14 @@ public class TestListener implements ITestListener{
 		System.out.println("Test Passed: "+result.getName());
 	}
 	
+	/*
+	
 	 @Override
 	    public void onTestFailure(ITestResult result) {
 
+		 System.out.println("Listener - driver = " + 
+			        ((BaseTest) result.getInstance()).getDriver());
+		 
 	        System.out.println(
 	                "Test Failed: " + result.getName()
 	        );
@@ -41,7 +46,32 @@ public class TestListener implements ITestListener{
 	            e.printStackTrace();
 	        }
 	    }
+*/
+	@Override
+	public void onTestFailure(ITestResult result) {
 
+	    System.out.println("Test Failed: " + result.getName());
+
+	    System.out.println("Original failure:");
+	    result.getThrowable().printStackTrace();
+
+	    try {
+	        BaseTest test = (BaseTest) result.getInstance();
+
+	        if (test.getDriver() != null) {
+	            ScreenshotUtils.takeScreenshot(
+	                    test.getDriver(),
+	                    result.getName()
+	            );
+	        } else {
+	            System.out.println("Driver is null - screenshot not taken.");
+	        }
+
+	    } catch (Exception e) {
+	        System.out.println("Screenshot could not be taken: " + e.getMessage());
+	    }
+	}
+	
 	    @Override
 	    public void onTestSkipped(ITestResult result) {
 
