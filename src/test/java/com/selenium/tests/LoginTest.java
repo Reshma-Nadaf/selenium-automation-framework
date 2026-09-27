@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.selenium.base.BaseTest;
 import com.selenium.pages.LoginPage;
 import com.selenium.utils.ConfigReader;
+import com.selenium.utils.CredentialsReader;
 import com.selenium.utils.ExcelDataUtils;
 import java.io.IOException;
 import com.selenium.utils.TestListener;
@@ -20,7 +21,18 @@ public class LoginTest extends BaseTest {
 	@DataProvider(name = "loginData")
 	public Object[][] logindata() throws IOException
 	{
-		ExcelDataUtils data = new ExcelDataUtils("src\\test\\resources\\TestData.xlsx", "Login");
+		String username = CredentialsReader.getUsername();
+		String password = CredentialsReader.getPassword();
+		
+		 // Jenkins execution
+	    if (username != null && password != null) {
+
+	        return new Object[][] {
+	            { username, password, "success" }
+	        };
+	    }
+	    
+ExcelDataUtils data = new ExcelDataUtils("src\\test\\resources\\TestData.xlsx", "Login");
 		
 		int rows = data.getRowCount();
 		int cols = data.getCellCount(); 
@@ -34,8 +46,8 @@ public class LoginTest extends BaseTest {
 			 }
 		 }
 		 return dataObj;
+	    
 	}
-	
 @Test(dataProvider = "loginData")
 public void LoginTestScreener(String username, String password, String expectedResult) throws Exception
 	{

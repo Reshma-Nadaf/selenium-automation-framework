@@ -24,6 +24,7 @@ public class BaseTest {
 	@AfterMethod
 	public void tearDown()
 	{
+		 log.info("TearDown - driver = " + driver.get());
 		driver.get().quit();
 		driver.remove();
 		log.info("Browser is closed");
