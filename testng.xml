@@ -4,6 +4,11 @@
     "https://testng.org/testng-1.0.dtd">
 
     <suite name = "Automation suite">
+    <groups>
+    <run>
+    	<include name="${groups}" />
+    </run>
+    </groups>
     <test name = "LoginTests">
     <classes>
      <class name="com.selenium.tests.GoggleTest"/>
