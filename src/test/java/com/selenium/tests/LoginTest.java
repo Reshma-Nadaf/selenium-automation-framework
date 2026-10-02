@@ -48,7 +48,7 @@ ExcelDataUtils data = new ExcelDataUtils("src\\test\\resources\\TestData.xlsx", 
 		 return dataObj;
 	    
 	}
-@Test(dataProvider = "loginData")
+@Test(dataProvider = "loginData", groups= { "regression"})
 public void LoginTestScreener(String username, String password, String expectedResult) throws Exception
 	{
 		log.info("Logging that test started");

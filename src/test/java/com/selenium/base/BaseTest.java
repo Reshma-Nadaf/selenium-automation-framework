@@ -12,7 +12,7 @@ public class BaseTest {
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	private static final Logger log = LogManager.getLogger(BaseTest.class);
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void setUp()
 	{
 		String broswer = ConfigReader.get("browser");
@@ -21,10 +21,11 @@ public class BaseTest {
 		log.info("Browser is set up");	
 	}
 	
-	@AfterMethod
+	
+	@AfterMethod(alwaysRun = true)
 	public void tearDown()
 	{
-		 log.info("TearDown - driver = " + driver.get());
+		// log.info("TearDown - driver = " + driver.get());
 		driver.get().quit();
 		driver.remove();
 		log.info("Browser is closed");

@@ -11,7 +11,7 @@ public class HomePageTest extends BaseTest{
 	//WebDriver driver ; -- not needed as its going take from base test 
 	
 	private static final Logger log = LogManager.getLogger(HomePageTest.class);
-	@Test
+	@Test(groups= {"smoke"})
 	public void verifyTitle()
 	{
 		log.info("Test started");
