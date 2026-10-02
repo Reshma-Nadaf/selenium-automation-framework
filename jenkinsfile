@@ -19,7 +19,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn clean test -Dgroups={$TEST_GROUP}'
+                bat 'mvn clean test -Dgroups=%TEST_GROUP%'
             }
         }
     }
