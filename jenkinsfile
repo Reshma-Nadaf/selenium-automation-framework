@@ -22,5 +22,11 @@ pipeline {
                 bat 'mvn clean test -Dgroups=%TEST_GROUP%'
             }
         }
+        
+        post{
+			always{
+				junit 'target/surefire-reports/*.xml'
+			}
+		}
     }
 }
