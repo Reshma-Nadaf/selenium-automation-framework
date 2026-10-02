@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    
+    parameters {
+        choice(
+            name: 'TEST_GROUP',
+            choices: ['smoke', 'regression'],
+            description: 'Select the TestNG group to execute'
+        )
+    }
 
     stages {
 
@@ -11,7 +19,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn clean test'
+                bat 'mvn clean test -Dgroups={$TEST_GROUP}'
             }
         }
     }
