@@ -12,19 +12,23 @@ public class BaseTest {
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	private static final Logger log = LogManager.getLogger(BaseTest.class);
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void setUp()
 	{
 		String broswer = ConfigReader.get("browser");
 		WebDriver webdriver = WebDriverFactory.createDriver(broswer);
 		driver.set(webdriver);
 		log.info("Browser is set up");	
+		
+		  System.out.println(
+			        "STARTING TEST: " + Thread.currentThread().getName());
 	}
 	
-	@AfterMethod
+	
+	@AfterMethod(alwaysRun = true)
 	public void tearDown()
 	{
-		 log.info("TearDown - driver = " + driver.get());
+		// log.info("TearDown - driver = " + driver.get());
 		driver.get().quit();
 		driver.remove();
 		log.info("Browser is closed");
@@ -32,7 +36,11 @@ public class BaseTest {
 	
 	public WebDriver getDriver()
 	{
+		  System.out.println(
+			        "Ending TEST: " + Thread.currentThread().getName());
+	
 		return driver.get();
+		
 	}
 
 }

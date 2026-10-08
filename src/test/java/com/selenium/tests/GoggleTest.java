@@ -12,7 +12,7 @@ public class GoggleTest extends BaseTest{
 
 	
 	private static final Logger log = LogManager.getLogger(GoggleTest.class);
-	@Test
+	@Test(groups= {"smoke"})
 	public void verifyGoogleTitle()
 	{
 		log.info("Test started");

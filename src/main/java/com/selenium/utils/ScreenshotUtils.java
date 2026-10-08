@@ -18,7 +18,7 @@ package com.selenium.utils;
 	        File source = ts.getScreenshotAs(OutputType.FILE);
 	        
 	        String path = 
-	        	System.getProperty("user.dir")+	"Screenshots/" + testName + ".png";
+	        	System.getProperty("user.dir")+	"screenshots/" + testName + ".png";
 
 	        File destination = new File(path);
 

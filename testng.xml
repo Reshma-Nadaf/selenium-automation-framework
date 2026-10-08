@@ -3,7 +3,12 @@
 <!DOCTYPE suite SYSTEM
     "https://testng.org/testng-1.0.dtd">
 
-    <suite name = "Automation suite">
+    <suite name = "Automation suite" parallel= "classes" thread-count="4">
+    <groups>
+    <run>
+    	<include name="${groups}" />
+    </run>
+    </groups>
     <test name = "LoginTests">
     <classes>
      <class name="com.selenium.tests.GoggleTest"/>

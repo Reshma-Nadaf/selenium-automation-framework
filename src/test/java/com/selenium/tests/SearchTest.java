@@ -10,7 +10,7 @@ import com.selenium.utils.ConfigReader;
 
 public class SearchTest extends BaseTest
 {
-	@Test
+	@Test(groups= {"regression"})
 	public void searchText()
 	{
 		String url= ConfigReader.get("url");

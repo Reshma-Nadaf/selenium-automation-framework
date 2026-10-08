@@ -1,0 +1,52 @@
+pipeline {
+	
+    agent any
+    
+     triggers {
+        githubPush()
+    }
+    
+    parameters {
+        choice(
+            name: 'TEST_GROUP',
+            choices: ['smoke', 'regression'],
+            description: 'Select the TestNG group to execute'
+        )
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'mvn clean test -Dgroups=%TEST_GROUP%'
+            }
+        }
+        
+    }
+    
+     post{
+			always{
+				junit 'target/surefire-reports/*.xml'
+				 archiveArtifacts artifacts: 'screenshots/**/*', allowEmptyArchive: true
+				  archiveArtifacts artifacts: 'logs/**/*', allowEmptyArchive: true
+				  
+				  step([$class: 'Publisher',
+      					reportFilenamePattern: 'target/surefire-reports/testng-results.xml'])
+			}
+			
+			
+		    success {
+		        echo '✅ Jenkins Pipeline completed successfully!'
+		    }
+		
+		    failure {
+		        echo '❌ Jenkins Pipeline failed. Check TestNG results, screenshots, and logs.'
+		    }
+		}
+}
