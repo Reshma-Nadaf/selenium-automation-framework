@@ -39,5 +39,14 @@ pipeline {
 				  step([$class: 'Publisher',
       					reportFilenamePattern: 'target/surefire-reports/testng-results.xml'])
 			}
+			
+			
+		    success {
+		        echo '✅ Jenkins Pipeline completed successfully!'
+		    }
+		
+		    failure {
+		        echo '❌ Jenkins Pipeline failed. Check TestNG results, screenshots, and logs.'
+		    }
 		}
 }

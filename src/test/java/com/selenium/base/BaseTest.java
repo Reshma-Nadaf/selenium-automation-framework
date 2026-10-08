@@ -19,6 +19,9 @@ public class BaseTest {
 		WebDriver webdriver = WebDriverFactory.createDriver(broswer);
 		driver.set(webdriver);
 		log.info("Browser is set up");	
+		
+		  System.out.println(
+			        "STARTING TEST: " + Thread.currentThread().getName());
 	}
 	
 	
@@ -33,7 +36,11 @@ public class BaseTest {
 	
 	public WebDriver getDriver()
 	{
+		  System.out.println(
+			        "Ending TEST: " + Thread.currentThread().getName());
+	
 		return driver.get();
+		
 	}
 
 }
