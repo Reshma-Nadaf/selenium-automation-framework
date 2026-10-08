@@ -36,6 +36,8 @@ pipeline {
 				 archiveArtifacts artifacts: 'screenshots/**/*', allowEmptyArchive: true
 				  archiveArtifacts artifacts: 'logs/**/*', allowEmptyArchive: true
 				  
+				  step([$class: 'Publisher',
+      					reportFilenamePattern: 'target/surefire-reports/testng-results.xml'])
 			}
 		}
 }
